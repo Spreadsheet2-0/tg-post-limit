@@ -3,7 +3,7 @@ const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 const CHANNEL_ID = -1002024415498; // Remplace par l'ID réel de ton channel
-const POST_LIMIT = 3;
+const POST_LIMIT = 50;
 const WINDOW_MS = 24 * 60 * 60 * 1000; // 1 jour
 
 const userPosts = new Map();

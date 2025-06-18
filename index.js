@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const token = '7994037471:AAHGcnhZsvLZh03HTBYRKeXCmkResK7Kvh8';
+const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 const CHANNEL_ID = -1002024415498; // Remplace par l'ID réel de ton channel
@@ -26,8 +26,7 @@ bot.on('channel_post', (msg) => {
 
   if (messages.length >= POST_LIMIT) {
     bot.deleteMessage(msg.chat.id, msg.message_id).catch(console.error);
-    bot.sendMessage(userId, `❗ Vous ne pouvez poster que ${POST_LIMIT} fois par jour dans ce channel.`)
-      .catch(() => {});
+    console.log(userId, `❗ Vous ne pouvez poster que ${POST_LIMIT} fois par jour dans ce channel.`)
   } else {
     messages.push(Date.now());
     userPosts.set(userId, messages);
